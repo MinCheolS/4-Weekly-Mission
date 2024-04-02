@@ -1,0 +1,46 @@
+.SignInputContent {
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.SignInputContent > label {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.SignPasswordContent {
+  position: relative;
+}
+
+.PasswordOnOffToggle {
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 38%;
+  right: 1.5rem;
+  cursor: pointer;
+}
+
+input[type='text'] + .PasswordOnOffToggle {
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 36.5%;
+  right: 1.5rem;
+  cursor: pointer;
+}
+
+.InputError {
+  border-color: var(--red);
+}
+
+.ErrorEmailMessage,
+.ErrorPasswordMessage {
+  color: var(--red);
+  margin-top: -0.6rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
