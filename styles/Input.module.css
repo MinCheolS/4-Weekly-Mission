@@ -1,0 +1,20 @@
+.EmailInput,
+.PasswordInput {
+  width: 100%;
+  /* width: 35rem; */
+  padding: 1.8rem 1.5rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--gray20);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.EmailInput:focus,
+.PasswordInput:focus {
+  border-color: var(--primary);
+}
+
+.InputError {
+  border-color: var(--red);
+}

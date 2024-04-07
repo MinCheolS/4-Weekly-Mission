@@ -1,40 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 14주차 Weekly-Mission
 
-## Getting Started
+### 📌 요구사항
 
-First, run the development server:
+### 🔎 기본 요구사항
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [x] ‘/folder’ 페이지를 Next.js 프로젝트에 맞게 변경 및 이전 <br />
+- [x] ‘/shared’ 페이지를 Next.js 프로젝트에 맞게 변경 및 이전 <br />
+- [x] 다른 페이지로 이동이 필요한 곳에 next/link의 Link를 적용 <br />
+- [x] Input 컴포넌트에 값이 없는 경우 회색의 placeholder값을 볼 수 있도록 적용 <br />
+- [x] Input 컴포넌트에 focus in 하면 파랑색 테두리를 볼 수 있도록 적용 <br />
+- [x] Input 컴포넌트에 눈 모양 아이콘을 누르면 비밀번호 가리기/보기 기능이 토글이 되도록 적용 <br />
+- [x] Input 컴포넌트에 값이 에러케이스일 경우 빨강색 테두리와 에러 메세지를 볼 수 있도록 적용 <br />
+- [x] Input 컴포넌트에서 focus out 하면 실행할 함수를 설정 <br />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 🔎 심화 요구사항
