@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from '@/styles/DeleteFolderModal.module.css';
 
-interface Props {
-  onClose: ModalCloseHandler;
+interface DeleteFolderModalProps {
+  onClose: () => void;
 }
 
-type ModalCloseHandler = () => void;
-
-export default function DeleteFolderModal({ onClose }: Props) {
+export default function DeleteFolderModal({ onClose }: DeleteFolderModalProps) {
   const handleClose = () => {
     onClose();
   };

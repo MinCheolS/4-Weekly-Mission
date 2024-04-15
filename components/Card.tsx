@@ -27,7 +27,7 @@ export default function Card({
   filterLinks,
   router,
 }: Props) {
-  const [isSelete, setIsSelete] = useState(null);
+  const [isSelect, setIsSelect] = useState(null);
 
   const getCreateDate = (created_at: Date) => {
     const createDate = new Date(created_at);
@@ -76,7 +76,7 @@ export default function Card({
   };
 
   const handleOnOffSelete = (id: null) => {
-    setIsSelete(isSelete === id ? null : id);
+    setIsSelect(isSelect === id ? null : id);
   };
 
   const filteredLinks = filterLinks
@@ -86,6 +86,8 @@ export default function Card({
     : undefined;
 
   const locationLink = router === '/shared' ? folderLinkInfo : filteredLinks;
+  const ADD_LINK_MODAL = 'AddLinkModal';
+  const DELETE_LINK_MODAL = 'DeleteLinkModal';
 
   return (
     <div className={styles.SharedCardContent}>
@@ -101,11 +103,9 @@ export default function Card({
           } = link;
           const createDate = getCreateDate(created_at || createdAt);
           const timeDifference = getTimeDifference(created_at || createdAt);
-          console.log(link.id);
-          console.log('isSelete', isSelete);
           return (
             <div key={link.id} className={styles.CardContent}>
-              <Link href={url} target='_black'>
+              <Link href={url} target='_blank' rel='noreferrer noopener'>
                 <img
                   className={styles.CardImage}
                   src={image_source || imageSource || undefinedImg.src}
@@ -120,17 +120,17 @@ export default function Card({
                     src={kebab.src}
                     alt='kebab img'
                   />
-                  {isSelete === link.id && (
+                  {isSelect === link.id && (
                     <div className={styles.CardBtnContent}>
                       {handleOpenModal && (
                         <button
-                          onClick={() => handleOpenModal('DeleteLinkModal')}
+                          onClick={() => handleOpenModal(DELETE_LINK_MODAL)}
                         >
                           삭제하기
                         </button>
                       )}
                       {handleOpenModal && (
-                        <button onClick={() => handleOpenModal('AddLinkModal')}>
+                        <button onClick={() => handleOpenModal(ADD_LINK_MODAL)}>
                           폴더에 추가
                         </button>
                       )}

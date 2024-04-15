@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from '@/styles/Signin.module.css';
-import { emailRegex, passwordRegex } from '@/components/Regex';
+import styles from '@/styles/Signup.module.css';
 import logo from '@/public/logo.svg';
 import kakao from '@/public/kakao logo.svg';
 import google from '@/public/google.svg';
 import passwordOff from '@/public/passwordOff.svg';
 import passwordOn from '@/public/passwordOn.svg';
+import { emailRegex, passwordRegex } from '@/components/Regex';
 
-export default function Signin() {
+export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [passwordCheckError, setPasswordCheckError] = useState('');
   const [passwordValue, setPasswordValue] = useState(false);
+  const [passwordCheckValue, setPasswordCheckValue] = useState(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -56,43 +59,40 @@ export default function Signin() {
     setPasswordValue(!passwordValue);
   };
 
-  const handleSubmit = async (e: React.ChangeEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handlePasswordCheckChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setPasswordCheck(e.target.value);
+  };
 
-    const userInfo = {
-      email: email,
-      password: password,
-    };
+  const handlePasswordCheckFoucs = () => {
+    setPasswordCheckError('');
+  };
 
-    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfo),
-    });
-
-    if (response.status === 200) {
-      const result = await response.json();
-      localStorage.setItem('accessToken', result.data.accessToken);
-      window.location.assign('folder.html');
+  const handlePasswordCheckBlur = () => {
+    if (passwordCheck === '') {
+      setPasswordCheckError('비밀번호를 입력해 주세요.');
       return;
-    } else {
-      setEmailError('이메일을 확인해 주세요.');
-      setPasswordError('비밀번호를 확인해 주세요.');
+    }
+    if (password !== passwordCheck) {
+      setPasswordCheckError('비밀번호가 일치하지 않아요.');
     }
   };
 
+  const isPasswordCheckValueChange = () => {
+    setPasswordCheckValue(!passwordCheckValue);
+  };
+
   return (
-    <div className={styles.SigninContainer}>
+    <div className={styles.SignupContainer}>
       <div className={styles.LogoContent}>
         <Link href='/' className={styles.LogoLink}>
           <img src={logo.src} alt='logo img' />
         </Link>
         <p className={styles.LogoMessage}>
-          회원이 아니신가요?
-          <Link href='/signup' className={styles.LogoMessageLink}>
-            회원 가입하기
+          이미 회원이신가요?
+          <Link href='/signin' className={styles.LogoMessageLink}>
+            로그인 하기
           </Link>
         </p>
       </div>
@@ -125,7 +125,7 @@ export default function Signin() {
                     passwordError && `${styles.InputError}`
                   }`}
                   type={passwordValue ? 'text' : 'password'}
-                  placeholder='비밀번호를 입력해 주세요.'
+                  placeholder='영문, 숫자를 조합해 8자 이상 입력해 주세요.'
                   onChange={handlePasswordChange}
                   onBlur={handlePasswordBlur}
                   onFocus={handlePasswordFoucs}
@@ -147,17 +147,44 @@ export default function Signin() {
                 </span>
               )}
             </div>
+            <div className={styles.SignInputContent}>
+              <label htmlFor='password-check'>비밀번호 확인</label>
+              <div className={styles.SignPasswordContent}>
+                <input
+                  id='password-check'
+                  className={`${styles.PasswordCheckInput} ${
+                    passwordCheckError && `${styles.InputError}`
+                  }`}
+                  type='password'
+                  placeholder='비밀번호와 일치하는 값을 입력해 주세요.'
+                  onChange={handlePasswordCheckChange}
+                  onBlur={handlePasswordCheckBlur}
+                  onFocus={handlePasswordCheckFoucs}
+                />
+                <img
+                  src={passwordCheckValue ? passwordOn.src : passwordOff.src}
+                  className={
+                    passwordCheckValue
+                      ? styles.PasswordOffToggleCheck
+                      : styles.PasswordOnToggleCheck
+                  }
+                  onClick={isPasswordCheckValueChange}
+                  alt={passwordCheckValue ? `passwordOff` : `passwordOn`}
+                />
+              </div>
+              {passwordCheckError && (
+                <span className={styles.ErrorPasswordCheckMessage}>
+                  {passwordCheckError}
+                </span>
+              )}
+            </div>
           </div>
-          <button
-            className={styles.SignBtn}
-            onSubmit={handleSubmit}
-            type='submit'
-          >
-            로그인
+          <button className={styles.SignBtn} type='submit'>
+            회원가입
           </button>
         </form>
         <div className={styles.SnsContent}>
-          <span className={styles.SnsText}>소셜 로그인</span>
+          <span className={styles.SnsText}>다른 방식으로 가입하기</span>
           <div className={styles.SnsLinks}>
             <Link href='https://www.google.com/' className={styles.SnsLink}>
               <img src={google.src} alt='google img' />

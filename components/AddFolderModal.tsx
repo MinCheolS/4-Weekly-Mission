@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from '@/styles/AddFolderModal.module.css';
 
-interface Props {
-  onClose: ModalCloseHandler;
+interface AddFolderModalProps {
+  onClose: () => void;
 }
 
-type ModalCloseHandler = () => void;
-
-export default function AddFolderModal({ onClose }: Props) {
+export default function AddFolderModal({ onClose }: AddFolderModalProps) {
   const handleClose = () => {
     onClose();
   };

@@ -12,19 +12,15 @@ interface LinkCount {
   count: number;
 }
 
-interface Props {
-  onClose: ModalCloseHandler;
+interface AddLinkModalProps {
+  onClose: () => void;
   folderInfo: FolderInfo[];
 }
 
-interface LinkFolderContentProps {
-  selected: boolean;
-  onClick: () => void;
-}
-
-type ModalCloseHandler = () => void;
-
-export default function AddLinkModal({ onClose, folderInfo }: Props) {
+export default function AddLinkModal({
+  onClose,
+  folderInfo,
+}: AddLinkModalProps) {
   const [selectedItemId, setSelectedItemId] = useState<null | number>(null);
 
   const handleClose = () => {
