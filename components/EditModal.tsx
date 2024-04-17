@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from '@/styles/EditModal.module.css';
 
-interface Props {
-  onClose: ModalCloseHandler;
+interface EditModalProps {
+  onClose: () => void;
 }
 
-type ModalCloseHandler = () => void;
-
-export default function EditModal({ onClose }: Props) {
+export default function EditModal({ onClose }: EditModalProps) {
   const handleClose = () => {
     onClose();
   };

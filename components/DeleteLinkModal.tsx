@@ -9,14 +9,15 @@ interface LinksInfoProps {
   url: string;
 }
 
-interface Props {
-  onClose: ModalCloseHandler;
+interface DeleteLinkModalProps {
+  onClose: () => void;
   linksInfo: LinksInfoProps;
 }
 
-type ModalCloseHandler = () => void;
-
-export default function DeleteLinkModal({ onClose, linksInfo }: Props) {
+export default function DeleteLinkModal({
+  onClose,
+  linksInfo,
+}: DeleteLinkModalProps) {
   const handleClose = () => {
     onClose();
   };

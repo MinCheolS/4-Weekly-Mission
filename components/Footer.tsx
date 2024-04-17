@@ -7,6 +7,21 @@ import youtube from '@/public/youtube.svg';
 import instagram from '@/public/instagram.svg';
 
 export default function Footer() {
+  const SNS_LINKS = [
+    {
+      name: 'Facebook',
+      url: 'https://www.facebook.com/',
+      imgSrc: facebook.src,
+    },
+    { name: 'Twitter', url: 'https://twitter.com/', imgSrc: twitter.src },
+    { name: 'YouTube', url: 'https://www.youtube.com/', imgSrc: youtube.src },
+    {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/',
+      imgSrc: instagram.src,
+    },
+  ];
+
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.FooterContent}>
@@ -16,18 +31,11 @@ export default function Footer() {
           <Link href='/faq'>FAQ</Link>
         </div>
         <div className={styles.FooterSns}>
-          <Link href='https://www.facebook.com/' target='_blank'>
-            <img src={facebook.src} alt='facebook logo' />
-          </Link>
-          <Link href='https://twitter.com/' target='_blank'>
-            <img src={twitter.src} alt='twitter logo' />
-          </Link>
-          <Link href='https://www.youtube.com/' target='_blank'>
-            <img src={youtube.src} alt='youtube logo' />
-          </Link>
-          <Link href='https://www.instagram.com/' target='_blank'>
-            <img src={instagram.src} alt='instagram logo' />
-          </Link>
+          {SNS_LINKS.map(({ name, url, imgSrc }) => (
+            <Link key={name} href={url} target='_blank'>
+              <img src={imgSrc} alt={`${name} logo`} />
+            </Link>
+          ))}
         </div>
       </div>
     </div>

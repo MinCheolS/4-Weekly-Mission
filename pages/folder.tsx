@@ -37,10 +37,11 @@ export default function Folder() {
   const handleLoadFolderInfo = async () => {
     try {
       const data = await getFolderInfo();
+      if (!data || !data.data) {
+        return;
+      }
       const folderInfo = data.data;
       const allFolderInfo = [{ id: 1, name: '전체' }, ...folderInfo];
-
-      if (!folderInfo) return;
       setFolderInfo(allFolderInfo);
     } catch (error) {
       console.error(error);
@@ -64,11 +65,10 @@ export default function Folder() {
     try {
       if (folderId === undefined) {
         return;
-      } else {
-        const linksInfo = await getSelectLinksInfo(folderId);
-        if (Object.keys(linksInfo).length === 0) return;
-        setLinksInfo(linksInfo);
       }
+      const linksInfo = await getSelectLinksInfo(folderId);
+      if (Object.keys(linksInfo).length === 0) return;
+      setLinksInfo(linksInfo);
     } catch (error) {
       console.error(error);
     }
@@ -128,7 +128,7 @@ export default function Folder() {
 
   return (
     <>
-      {isOpenModal === true ? (
+      {isOpenModal ? (
         <ModalData
           handleCloseModal={handleCloseModal}
           selectModal={selectModal}
@@ -139,7 +139,6 @@ export default function Folder() {
       ) : null}
       {isOpenModal === true ? null : (
         <>
-          {/* <Header /> */}
           <div className={styles.FolderContainer}>
             <div className={styles.FolderTitle}>
               <div className={styles.FolderLinkAddContent}>
@@ -224,7 +223,6 @@ export default function Folder() {
               )}
             </div>
           </div>
-          {/* <Footer /> */}
         </>
       )}
     </>

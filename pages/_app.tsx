@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const pagesWithOutHeaderFooter = ['/signin', '/singup'];
+  const pagesWithOutHeaderFooter = ['/signin', '/signup'];
 
   const renderPageHeaderFooter = pagesWithOutHeaderFooter.includes(
     router.pathname

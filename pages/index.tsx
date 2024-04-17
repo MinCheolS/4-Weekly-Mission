@@ -15,6 +15,9 @@ export default function Home() {
       <Link href='/signin'>signin</Link>
       <br />
       <br />
+      <Link href='/signup'>signup</Link>
+      <br />
+      <br />
     </>
   );
 }

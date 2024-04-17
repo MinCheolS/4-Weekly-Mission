@@ -30,7 +30,6 @@ export default function Shared() {
   const handleLoadFolderInfo = async () => {
     try {
       const folderInfo = await getSamepleUserInfo();
-      // console.log(folderInfo);
       if (!folderInfo.folder) return;
 
       setFolderInfo({

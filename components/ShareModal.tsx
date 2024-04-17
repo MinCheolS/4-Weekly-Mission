@@ -4,14 +4,12 @@ import kakao from '@/public/kakao.svg';
 import facebook from '@/public/facebook.svg';
 import link from '@/public/link.svg';
 
-interface Props {
-  onClose: ModalCloseHandler;
+interface ShareModalProps {
+  onClose: () => void;
   selectFolder: any;
 }
 
-type ModalCloseHandler = () => void;
-
-export default function ShareModal({ onClose, selectFolder }: Props) {
+export default function ShareModal({ onClose, selectFolder }: ShareModalProps) {
   const currentFolderId = selectFolder;
   const sharedLink = `${window.location.origin}/shared/${currentFolderId}`;
 

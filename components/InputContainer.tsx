@@ -8,13 +8,6 @@ export default function InputContainer() {
     <div className={styles.SignInputContent}>
       <label htmlFor='password'>비밀번호</label>
       <div className={styles.SignPasswordContent}>
-        {/* <Input
-          className='EmailInput'
-          placeholder='codeit@codeit.com'
-          type='text'
-        />
-        <br />
-        <br /> */}
         <Input
           className='PasswordInput'
           placeholder='‧ ‧ ‧ ‧ ‧ ‧ ‧ ‧'
@@ -22,9 +15,6 @@ export default function InputContainer() {
         />
         <img className={styles.PasswordOnOffToggle} src={passwordToggle.src} />
       </div>
-      {/* {passwordError && (
-        <span className='ErrorPasswordMessage'>{passwordError}</span>
-      )} */}
     </div>
   );
 }

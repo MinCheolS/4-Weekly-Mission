@@ -16,10 +16,13 @@ export default function Header() {
   };
 
   const handleLoadUser = async () => {
-    const data = await getUserInfo();
-    const { email, image_source } = data.data[0];
+    const response = await getUserInfo();
+    const [userData] = response.data;
+    const { email, image_source } = userData;
 
-    if (!email) return;
+    if (!email) {
+      throw new Error('유효한 이메일이 없습니다.');
+    }
     setUser({ email, image_source });
   };
 
