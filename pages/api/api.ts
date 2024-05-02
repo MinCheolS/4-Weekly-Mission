@@ -31,3 +31,30 @@ export const getSelectLinksInfo = async (folderId: number) => {
   const result = response.json();
   return result;
 };
+
+export const signInUser = async (email: string, password: string) => {
+  const userInfo = {
+    email: email,
+    password: password,
+  };
+
+  try {
+    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    });
+
+    if (response.status === 200) {
+      const result = await response.json();
+      localStorage.setItem('accessToken', result.data.accessToken);
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from '@/styles/Signup.module.css';
-import logo from '@/public/logo.svg';
-import kakao from '@/public/kakao logo.svg';
-import google from '@/public/google.svg';
-import passwordOff from '@/public/passwordOff.svg';
-import passwordOn from '@/public/passwordOn.svg';
-import { emailRegex, passwordRegex } from '@/components/Regex';
+import styles from '@styles/Signup.module.css';
+import logo from '@public/logo.svg';
+import kakao from '@public/kakao logo.svg';
+import google from '@public/google.svg';
+import passwordOff from '@public/passwordOff.svg';
+import passwordOn from '@public/passwordOn.svg';
+import { emailRegex, passwordRegex } from '@components/Regex';
 
 export default function Signup() {
   const [email, setEmail] = useState('');

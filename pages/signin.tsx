@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from '@/styles/Signin.module.css';
-import { emailRegex, passwordRegex } from '@/components/Regex';
-import logo from '@/public/logo.svg';
-import kakao from '@/public/kakao logo.svg';
-import google from '@/public/google.svg';
-import passwordOff from '@/public/passwordOff.svg';
-import passwordOn from '@/public/passwordOn.svg';
+import styles from '@styles/Signin.module.css';
+import { emailRegex, passwordRegex } from '@components/Regex';
+import logo from '@public/logo.svg';
+import kakao from '@public/kakao logo.svg';
+import google from '@public/google.svg';
+import passwordOff from '@public/passwordOff.svg';
+import passwordOn from '@public/passwordOn.svg';
+import { signInUser } from './api/api';
 
 export default function Signin() {
   const [email, setEmail] = useState('');
@@ -59,27 +60,17 @@ export default function Signin() {
   const handleSubmit = async (e: React.ChangeEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    const userInfo = {
-      email: email,
-      password: password,
-    };
+    try {
+      const signIn = await signInUser(email, password);
 
-    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-in', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfo),
-    });
-
-    if (response.status === 200) {
-      const result = await response.json();
-      localStorage.setItem('accessToken', result.data.accessToken);
-      window.location.assign('folder.html');
-      return;
-    } else {
-      setEmailError('이메일을 확인해 주세요.');
-      setPasswordError('비밀번호를 확인해 주세요.');
+      if (signIn) {
+        window.location.assign('folder.html');
+      } else {
+        setEmailError('이메일을 확인해 주세요.');
+        setPasswordError('비밀번호를 확인해 주세요.');
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
